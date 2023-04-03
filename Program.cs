@@ -1,3 +1,7 @@
+using Services.CategoriaService;
+using Services.TareaService;
+using webapi;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,7 +12,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 /****Inyección de dependencias****/
 //builder.Services.AddScoped<IHelloWorldService, HelloWorldService>();
+builder.Services.AddSqlServer<TareasContext>(builder.Configuration.GetConnectionString("TareaConn"));
 builder.Services.AddScoped<IHelloWorldService>(p=> new HelloWorldService());
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<ITareaService, TareaService>();
 /****Inyección de dependencias****/
 var app = builder.Build();
 

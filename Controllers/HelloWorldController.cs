@@ -13,8 +13,9 @@ public class HelloWorldController : ControllerBase
         _logger = logger;
     }
 
-    [Route("get/helloworld")]
-    public IActionResult GetHelloWorld(){
+    [HttpGet(Name = "GetHelloWorld")]
+    //[Route("get/helloworld")]
+    public IActionResult Get(){
         return Ok(_service.GetHelloWorld());
     }
 }
